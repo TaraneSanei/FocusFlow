@@ -1,9 +1,7 @@
-# Python Bytecode files
 *.py[cod]
 __pycache__/
 *.so
 
-# Django specific files
 *.log
 *.pot
 *.pyc
@@ -12,30 +10,15 @@ __pycache__/
 *.sqlite3
 db.sqlite3
 
-# Environment files
-.env
 .venv/
-env/
-TT_venv/
-ENV/
-env.bak/
-venv.bak/
-
-# Django Migrations
 */migrations/*
 !*/migrations/__init__.py
-
-# Media files
 media/
 staticfiles/
 static/
-
-# IDEs and editors
 .vscode/
 *.swp
 *.swo
 *.s
-.venv
-
 frontend/node_modules
 backend/FFRESTAPIS/db.sqlite3
