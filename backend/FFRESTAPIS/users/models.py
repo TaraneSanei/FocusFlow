@@ -10,7 +10,7 @@ class CustomUserManager(BaseUserManager):
         if not email:
             raise ValueError("please provide a valid email address")
         email = self.normalize_email(email)
-        user = self.model(username, **extrafields)
+        user = self.model(username, email, **extrafields)
         user.set_password(password)
         user.save()
         return user
@@ -34,7 +34,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     last_login = models.DateField(default=date.today)
 
 
-    objects = CustomUserManager
+    objects = CustomUserManager()
 
     USERNAME_FIELD = 'username'
     EMAIL_FIELD = 'email'
