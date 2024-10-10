@@ -10,22 +10,22 @@ class CustomUserManager(BaseUserManager):
         if not email:
             raise ValueError("please provide a valid email address")
         email = self.normalize_email(email)
-        user = self.model(username, email, **extrafields)
+        user = self.model(username=username, email=email, **extrafields)
         user.set_password(password)
         user.save()
         return user
-    def create_user(self, email=None, password=None, username=None, **extrafields):
+    def create_user(self, username=None, email=None, password=None, **extrafields):
         extrafields.setdefault('is_staff', False)
         extrafields.setdefault('is_superuser', False)
         return self._create_user(username, email, password, **extrafields)
     
-    def create_superuser(self, email=None, username=None, password=None, **extrafields):
+    def create_superuser(self, username=None, email=None, password=None, **extrafields):
         extrafields.setdefault('is_staff', True)
         extrafields.setdefault('is_superuser', True)
         return self._create_user(username, email,password, **extrafields)
     
 class User(AbstractBaseUser, PermissionsMixin):
-    username = models.CharField(max_length=64, unique=True)
+    username = models.CharField(max_length=64, unique=True, primary_key=False)
     email = models.EmailField(unique=True)
     is_active = models.BooleanField(default=True)
     is_superuser = models.BooleanField(default=False)
