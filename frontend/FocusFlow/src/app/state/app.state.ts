@@ -1,5 +1,5 @@
-import { UserState } from "./user/user.reducer"
+import { JournalState } from "./journal/journal.reducer";
 
 export interface AppState{
-    user: UserState
+    journal: JournalState
 }

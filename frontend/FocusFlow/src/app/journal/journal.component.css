@@ -1,0 +1,34 @@
+.note-card {
+    max-width: 100%;
+    margin: 1%;
+    background-color: #62E2C6;
+    border-radius: 10px;
+    width: 70%;
+}
+
+.note-form-field{
+    background-color: #003B3B;
+    margin: 5px;
+    border-radius: 10px;
+
+    
+}
+
+.note-data{
+    margin: 5px;
+    border-radius: 10px;
+    background-color: #003B3B;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+
+.journal-container{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center; /* Center note-cards horizontally */
+
+}

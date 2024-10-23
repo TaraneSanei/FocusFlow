@@ -5,7 +5,6 @@ from users.models import User
 # Create your models here.
 
 class journal(models.Model):
-    Date = models.DateField(default=date.today)
+    Datetime = models.DateTimeField()
     Note = models.TextField()
-    Time = models.TimeField()
     Owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='journal')

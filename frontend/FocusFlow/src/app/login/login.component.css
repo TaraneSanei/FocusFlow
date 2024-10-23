@@ -10,7 +10,7 @@ padding: 10%;
 }
 
 .login_container{
-    background-color: rgb(30, 30, 30);
+    background-color: #003B3B;
     display: flex;
     flex-direction: column;
     width: 400px;
@@ -23,3 +23,8 @@ padding: 10%;
 .login_form_field{
     width: 100%;
 }
+
+.error-message {
+    color: rgb(187, 9, 9);
+    font-size: smaller;
+  }

@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormsModule } from '@angular/forms';
 import { MatTabsModule } from '@angular/material/tabs';
-import { FocusFlowService } from '../focus-flow.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AppState } from '../state/app.state';
 import { Store } from '@ngrx/store';
-import { Login } from '../state/user/user.actions';
+import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 
 
 
@@ -29,25 +29,34 @@ import { Login } from '../state/user/user.actions';
 export class LoginComponent {
   loginForm: FormGroup;
   signupform: FormGroup;
+  errorMessage: string = ''
 
-  constructor(private fb: FormBuilder, private FocusflowService: FocusFlowService, private store: Store<AppState>) {
+  constructor(private fb: FormBuilder, private authService: AuthService, private store: Store<AppState>, private router: Router) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]]
     });
     this.signupform = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password : ['', [Validators.required]]
+      password: ['', [Validators.required]]
     });
   }
 
   onLogin() {
     if (this.loginForm.valid) {
       const { email, password } = this.loginForm.value;
-      this.store.dispatch(Login({email, password}));
+      this.authService.login(email, password).subscribe(
+        (Response) => {
+          if (Response.error) {
+            this.errorMessage = Response.error
+          } else {
+            this.router.navigate([""])
+          }
+        }
+      )
     }
   }
 
-  onSignup() {}
+  onSignup() { }
 
 }

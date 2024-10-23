@@ -4,12 +4,13 @@ html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 html{
-    background-color:rgb(20, 20, 20);
+    background-color:#141414;
 }
 
 body{
-    background-color: rgb(9, 82, 81);
+    background-color: #1A837C;
     color: white;
+    height: fit-content;
 }
 
 .container {

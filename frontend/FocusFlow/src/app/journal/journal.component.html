@@ -1,1 +1,18 @@
-<p>journal works!</p>
+<div class="journal-container">
+<mat-card class="note-card">
+
+</mat-card>
+<mat-card class="note-card" *ngFor="let note of journal$ | async">
+    <div class="note-data">
+    <div>
+        Date: {{note.Date}}
+    </div>
+    <div>
+        Time: {{note.Time}}
+    </div>
+    </div>
+        <div class="note-data">
+            {{note.Note}} </div> 
+
+</mat-card>
+</div>
