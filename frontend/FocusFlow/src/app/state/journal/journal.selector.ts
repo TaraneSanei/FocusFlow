@@ -7,3 +7,11 @@ export const selectJournal = createSelector(
     Selectjournal,
     (state: JournalState) => state.journalEntries
 );
+export const selectNext = createSelector(
+    Selectjournal,
+    (state: JournalState) => state.next
+);
+export const selectPrevious = createSelector(
+    Selectjournal,
+    (state: JournalState) => state.previous
+);

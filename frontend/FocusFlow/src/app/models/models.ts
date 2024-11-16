@@ -3,8 +3,8 @@ export interface User{
 }
 
 export interface JournalEntry{
-    Date: Date;
-    Time: Time;
+    id?: number;
+    DateTime: Date;
     Note: string;
 }
 

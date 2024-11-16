@@ -1,18 +1,68 @@
-<div class="journal-container">
-<mat-card class="note-card">
-
-</mat-card>
-<mat-card class="note-card" *ngFor="let note of journal$ | async">
-    <div class="note-data">
-    <div>
-        Date: {{note.Date}}
-    </div>
-    <div>
-        Time: {{note.Time}}
-    </div>
-    </div>
+<div class="main-container">
+    <mat-card class="note-card">
         <div class="note-data">
-            {{note.Note}} </div> 
-
-</mat-card>
+            <mat-form-field floatLabel="always">
+                <mat-label>Date</mat-label>
+                <input type="date" matInput [ngModel]="newJournal.DateTime | date:'yyyy-MM-dd'"
+                    (ngModelChange)="onDateChange($event)">
+            </mat-form-field>
+            <mat-form-field floatLabel="always">
+                <mat-label>Time</mat-label>
+                <input type="time" matInput [ngModel]="newJournal.DateTime | date:'HH:mm'"
+                    (ngModelChange)="onTimeChange($event)">
+            </mat-form-field>
+        </div>
+        <mat-form-field floatLabel="always" class="note-data">
+            <textarea type="text" matInput [(ngModel)]="newJournal.Note" cdkTextareaAutosize cdkAutosizeMinRows="15"
+                placeholder="How are you doing today?"></textarea>
+        </mat-form-field>
+        <div class="note-buttons-section">
+            <button mat-button style="background-color:#399f5b ;color: #003B3B;" (click)="Addjournal()">save</button>
+        </div>
+    </mat-card>
+    <div (scroll)="onScroll($event)" *ngIf=" journal$ | async as JournalEntries">
+        <div *ngFor="let note of JournalEntries">
+            <mat-card class="note-card" *ngIf="editing() != note.id">
+                <div class="note-data">
+                    <div>
+                        Date: {{note.DateTime | date:'mediumDate'}}
+                    </div>
+                    <div>
+                        Time: {{note.DateTime | date:'shortTime'}}
+                    </div>
+                </div>
+                <div class="note-data">
+                    {{note.Note}}
+                </div>
+                <div class="note-buttons-section">
+                    <button (click)="toggleEdit(note)" mat-button
+                        style="background-color: #e4c445; color: #003B3B;">Edit</button>
+                    <button (click)="Deletejournal(note)" mat-button style="background-color: #d54040; color: #003B3B; margin: 2px;">Delete</button>
+                </div>
+            </mat-card>
+            <mat-card class="note-card" *ngIf="editing() == note.id">
+                <div class="note-data">
+                    <mat-form-field floatLabel="always">
+                        <mat-label>Date</mat-label>
+                        <input type="date" matInput [ngModel]="edittableJournal.DateTime | date:'yyyy-MM-dd'"
+                            (ngModelChange)="onDateChange($event)">
+                    </mat-form-field>
+                    <mat-form-field floatLabel="always">
+                        <mat-label>Time</mat-label>
+                        <input type="time" matInput [ngModel]="edittableJournal.DateTime | date:'HH:mm'"
+                            (ngModelChange)="onTimeChange($event)">
+                    </mat-form-field>
+                </div>
+                <mat-form-field floatLabel="always" class="note-data">
+                    <textarea type="text" matInput [(ngModel)]="edittableJournal.Note" cdkTextareaAutosize></textarea>
+                </mat-form-field>
+                <div class="note-buttons-section">
+                    <button mat-button style="background-color:#399f5b ;color: #003B3B;"
+                        (click)="cancelEdit()">cancel</button>
+                    <button mat-button style="background-color:#399f5b ;color: #003B3B;"
+                        (click)="Editjournal(note)">save</button>
+                </div>
+            </mat-card>
+        </div>
+    </div>
 </div>

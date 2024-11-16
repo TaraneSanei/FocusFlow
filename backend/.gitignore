@@ -30,6 +30,7 @@ venv.bak/
 media/
 staticfiles/
 static/
+migrations
 
 # IDEs and editors
 .vscode/
@@ -39,3 +40,4 @@ static/
 
 # SQLite database file
 db.sqlite3
+__init__.py

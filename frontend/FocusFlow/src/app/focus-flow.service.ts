@@ -16,20 +16,23 @@ export class FocusFlowService {
   constructor(private http: HttpClient, private store:Store<AppState>, private cookieService: CookieService) {
    }
 
-  login(email:string, password: string): Observable<User>{
-    const csrfToken = this.cookieService.get('csrftoken');
-    const headers = new HttpHeaders({
-      'X-CSRFToken': csrfToken
-    });
-    return this.http.post<User>(this.apiUrl + 'user/login', {email, password}, {headers})
+  getJournal(url:string |null){
+    if (url){
+      return this.http.get<any>(url)
+    }
+    return this.http.get<any>(this.apiUrl + 'journal/')
   }
 
-  CsrfToken():Observable<string>{
-    return this.http.get<string>(this.apiUrl + 'user/csrf_token')
+  addJournal(journalEntry: JournalEntry){
+    return this.http.post<JournalEntry>(this.apiUrl + 'journal/', journalEntry)
   }
 
-  getJournal(): Observable<JournalEntry[]>{
-    return this.http.get<JournalEntry[]>(this.apiUrl + 'journal/')
+  editJournal(journalEntry: JournalEntry){
+    return this.http.put<JournalEntry>(this.apiUrl + 'journal/' + journalEntry.id , journalEntry)
+  }
+
+  deleteJournal(journalEntry: JournalEntry){
+    return this.http.delete<JournalEntry>(this.apiUrl + 'journal/' + journalEntry.id)
   }
 
 }

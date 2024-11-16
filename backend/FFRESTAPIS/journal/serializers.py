@@ -3,4 +3,7 @@ from journal.models import *
 class JournalSerializer(serializers.ModelSerializer):
     class Meta:
         model = journal
-        fields = '__all__'
+        fields = ['id','Note', 'DateTime']
+
+    def create(self, validated_data):
+        return journal.objects.create(**validated_data)

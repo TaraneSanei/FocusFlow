@@ -1,17 +1,17 @@
 .note-card {
-    max-width: 100%;
-    margin: 1%;
+    margin: 10px;
     background-color: #62E2C6;
     border-radius: 10px;
-    width: 70%;
+    width: 100%;
+    max-width: 100%; /* Set a max-width for better responsiveness */
+    padding: 5px;
+    margin-bottom: 10px;
+
 }
 
 .note-form-field{
     background-color: #003B3B;
-    margin: 5px;
-    border-radius: 10px;
-
-    
+    margin-bottom: 0px;
 }
 
 .note-data{
@@ -25,10 +25,29 @@
     word-wrap: break-word;
   }
 
-.journal-container{
+.main-container {
     display: flex;
-    justify-content: center;
     flex-direction: column;
-    align-items: center; /* Center note-cards horizontally */
+    padding: 10px;
+    width: 70%;
+    justify-content: center;
+    justify-self: center;
+}
 
+
+.note-buttons-section{
+    margin: 5px;
+}
+
+@media (max-width: 768px) {
+    .main-container {
+        width: 100%;
+        margin: 0px;
+        padding: 0px;
+    }
+    .note-card{
+        margin: 0px;
+        margin-bottom: 5px;
+
+    }
 }
