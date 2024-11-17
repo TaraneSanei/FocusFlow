@@ -9,6 +9,7 @@ class category(models.Model):
 class task(models.Model):
     Task = models.CharField(max_length=512)
     Done = models.BooleanField(default=False)
+    deadline = models.DateField()
 
 
 class project(models.Model):
